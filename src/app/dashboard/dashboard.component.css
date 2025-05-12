@@ -1,0 +1,8 @@
+.mat-grid-tile{
+  border: solid 1px black;
+  background-color: azure;
+}
+
+.mat-grid-list{
+  background-color: red;
+}
