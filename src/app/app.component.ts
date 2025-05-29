@@ -12,7 +12,6 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-root',
   imports: [
-    DashboardComponent,
     MatToolbarModule,
     MatCardModule,
     MatListModule,
