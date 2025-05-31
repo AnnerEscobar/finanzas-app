@@ -1,0 +1,37 @@
+   <div class="p-6 max-w-lg mx-auto">
+      <mat-card class="bg-white shadow-lg rounded-lg overflow-hidden">
+        <mat-card-header class="bg-green-500 text-white">
+          <mat-card-title class="text-xl font-semibold">Agregar Deuda</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <form class="space-y-4">
+            <mat-form-field appearance="outline" class="w-full">
+              <mat-label>Nombre de la deuda</mat-label>
+              <input matInput placeholder="Préstamo personal" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="w-full">
+              <mat-label>Monto total</mat-label>
+              <input matInput type="number" placeholder="Q 10,000" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="w-full">
+              <mat-label>Fecha de vencimiento</mat-label>
+              <input matInput [matDatepicker]="picker" placeholder="Selecciona una fecha" />
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="w-full">
+              <mat-label>Pago mínimo mensual</mat-label>
+              <input matInput type="number" placeholder="Q 500" />
+            </mat-form-field>
+
+            <button mat-raised-button class="w-full py-2 rounded bg-green-500 hover:bg-green-600 text-white">
+              Guardar Deuda
+            </button>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+

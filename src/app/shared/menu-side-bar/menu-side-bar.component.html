@@ -1,8 +1,14 @@
-<div class="fixed bottom-0 left-0 w-full h-24 bg-gradient-to-r from-green-400 to-teal-500 ">
+<div>
 
-<mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home" class="icon-style"></mat-icon>
-<mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="account_balance_wallet" class="icon-style" ></mat-icon>
-<mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="payment" class="icon-style"></mat-icon>
-<mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="settings" class="icon-style"></mat-icon>
+  <div class="
+    fixed bottom-0 left-0 w-full h-16 bg-gradient-to-r from-blue-500 to-blue-700 flex flex-row items-center place-content-between
+    md:top-0 md:bottom-auto md:left-0 md:w-20 md:h-full md:flex-col md:place-content-start
+  ">
+
+    <a routerLink="" routerLinkActive="active"><mat-icon fontIcon="home"class="icon-style"></mat-icon></a>
+    <a routerLink="/add-debt" routerLinkActive="active"><mat-icon fontIcon="account_balance_wallet" class="icon-style"></mat-icon></a>
+    <a routerLink="/add-payment" routerLinkActive="active"><mat-icon fontIcon="payment" class="icon-style"></mat-icon></a>
+    <mat-icon fontIcon="settings" class="icon-style"></mat-icon> <!--tHIS NO HAVE ROUTE ASIGNED-->
+    </div>
 
 </div>
