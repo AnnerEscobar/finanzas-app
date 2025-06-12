@@ -1,1 +1,78 @@
-<p>add-payment works!</p>
+<!-- register-payment.component.html -->
+<div class="p-6 max-w-lg mx-auto">
+  <!-- Usa un mat-card para dar un contenedor blanco con sombra -->
+  <mat-card class="bg-white shadow-lg rounded-lg overflow-hidden">
+    <!-- Título -->
+    <mat-card-header class="bg-gradient-to-r from-blue-500 to-blue-700 text-white text-white w-full m-auto">
+      <mat-card-title class="text-xl font-semibold">Registrar pago</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content class="m-4">
+      <form [formGroup]="paymentForm" class="space-y-6" (ngSubmit)="sendPayment()">
+        <!-- 1. Selector de Deuda con MatSelect -->
+        <mat-form-field class="w-full">
+          <mat-label>Seleccionar deuda</mat-label>
+          <mat-select
+          formControlName="_id"
+          placeholder="-- Elige una deuda --">
+            <!-- Itera sobre el arreglo de deudas (defínelo en el TS) -->
+            <mat-option *ngFor="let d of debts" [value]="d._id">
+              {{d.debtName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- 2. Pago a capital -->
+        <mat-form-field class="w-full">
+          <mat-label>Pago a capital (deuda)</mat-label>
+          <input
+            matInput
+            type="number"
+            min="0"
+            step="0.01"
+            placeholder="0.00"
+            formControlName="payAmount"
+          />
+        </mat-form-field>
+
+        <!-- 3. Pago a intereses -->
+        <mat-form-field class="w-full">
+          <mat-label>Pago a intereses</mat-label>
+          <input
+            matInput
+            type="number"
+            min="0"
+            step="0.01"
+            placeholder="0.00"
+            formControlName="interestPay"
+          />
+        </mat-form-field>
+
+        <!-- 4. Fecha de pago con datepicker -->
+        <mat-form-field class="w-full">
+          <mat-label>Fecha de pago</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            placeholder="Selecciona fecha"
+            formControlName="payDate"
+          />
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <!-- 5. Botón de envío al final -->
+        <div class="flex justify-center">
+          <button
+            mat-raised-button
+            color="primary"
+            class="px-6 py-2"
+            type="submit"
+          >
+            Registrar Pago
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
