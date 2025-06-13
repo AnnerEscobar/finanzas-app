@@ -4,7 +4,7 @@
 
   <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
     <div
-      *ngFor="let debt of otherDebtsList"
+      *ngFor="let debt of debts"
       class="bg-white text-gray-800 p-4 rounded-lg flex items-center space-x-4"
     >
       <!-- Spinner pequeño -->
@@ -18,8 +18,8 @@
 
       <!-- Detalle de la deuda -->
       <div class="flex-1">
-        <p class="font-semibold">{{ debt.name }}</p>
-        <p class="text-sm">Pendiente: <strong>{{ debt.pending | currency:'GTQ' }}</strong></p>
+        <p class="font-semibold">{{ debt.debtName }}</p>
+        <p class="text-sm">Pendiente: <strong>{{ debt.amount | currency:'GTQ' }}</strong></p>
       </div>
     </div>
   </div>

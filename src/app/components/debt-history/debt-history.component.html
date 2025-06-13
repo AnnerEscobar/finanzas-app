@@ -1,16 +1,23 @@
-<!-- Historial de pagos -->
 <mat-card class="p-6 shadow-2xl rounded-2xl bg-gradient-to-r from-gray-100 to-gray-200 text-gray-800 overflow-hidden">
   <h3 class="text-2xl font-semibold mb-6">Historial de pagos</h3>
 
-  <div class="space-y-4">
+  <div class="space-y-4" *ngIf="paymentHistory.length > 0; else noHistory">
     <ng-container *ngFor="let p of paymentHistory">
       <mat-card class="flex items-center p-4 bg-white rounded-lg shadow-sm">
         <mat-icon class="text-blue-600">credit_score</mat-icon>
         <div class="ml-4">
-          <div class="font-medium">{{ p.date | date:'dd/MM/yyyy' }} – {{ p.amount | currency:'GTQ' }}</div>
-          <div class="text-sm text-gray-600">a {{ p.to }}</div>
+          <div class="font-medium">
+            {{ p.date | date:'dd/MM/yyyy' }} – {{ p.amount | currency:'GTQ' }}
+          </div>
+          <div class="text-sm text-gray-600">
+            a: {{ p.to }}
+          </div>
         </div>
       </mat-card>
     </ng-container>
   </div>
+
+  <ng-template #noHistory>
+    <p class="text-center text-gray-600">Aún no hay pagos registrados.</p>
+  </ng-template>
 </mat-card>

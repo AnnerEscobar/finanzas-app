@@ -1,12 +1,10 @@
+<!-- debt-focus.component.html -->
 
-  <!-- Deuda en foco -->
-  <mat-card class="p-6 shadow-2xl rounded-2xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white overflow-hidden">
+<mat-card class="p-6 shadow-2xl rounded-2xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white overflow-hidden" *ngIf="focusedDebt">
   <h3 class="text-2xl font-semibold mb-6">Deuda en foco</h3>
 
   <div class="flex items-center">
-
-
-    <!-- Indicador circular -->
+    <!-- Spinner circular -->
     <div class="relative inline-flex">
       <mat-progress-spinner
         mode="determinate"
@@ -20,13 +18,13 @@
       </div>
     </div>
 
-    <!-- Detalle de montos y acción -->
+    <!-- Detalles y acción -->
     <div class="ml-8 flex-1">
-      <p class="text-lg mb-1">Tarjeta Banco Uno</p>
+      <p class="text-lg mb-1">{{ focusedDebt.debtName }}</p>
       <p class="text-sm mb-4 opacity-80">
-        Total: <strong>{{ focusedDebtTotal | currency:'GTQ' }}</strong> |
-        Pagado: <strong>{{ focusedDebtPaid | currency:'GTQ' }}</strong> |
-        Restante: <strong>{{ focusedDebtPending | currency:'GTQ' }}</strong>
+        Total:     <strong>{{ focusedDebtTotal   | currency:'GTQ' }}</strong> |
+        Pagado:    <strong>{{ focusedDebtPaid    | currency:'GTQ' }}</strong> |
+        Restante:  <strong>{{ focusedDebtPending | currency:'GTQ' }}</strong>
       </p>
       <button
         mat-flat-button

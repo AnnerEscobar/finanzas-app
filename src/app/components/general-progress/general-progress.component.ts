@@ -2,6 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { GeneralProgressService } from './general-progress.service';
+import { forkJoin } from 'rxjs';
+import { ProgressGeneral } from './general-progress.interface';
 
 @Component({
   selector: 'app-general-progress',
@@ -10,14 +13,26 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   styleUrl: './general-progress.component.css'
 })
 export class GeneralProgressComponent {
+ paidPercentage = 0;
+  paidAmount     = 0;
+  interestAmount = 0;
+  pendingAmount  = 0;
 
-  totalDebt = 5000;
-  paidAmount = 1500;
-  pendingAmount = this.totalDebt - this.paidAmount;
+  constructor(private generalProgressService: GeneralProgressService) {}
 
-  get paidPercentage(): number {
-    return Math.round((this.paidAmount / this.totalDebt) * 100);
+  ngOnInit() {
+    this.generalProgressService.getProgressGeneral()
+      .subscribe({
+        next: (stats: ProgressGeneral) => {
+          this.paidPercentage = stats.paidPercentage;
+          this.paidAmount     = stats.totalPaid;
+          this.interestAmount = stats.totalInterest;
+          this.pendingAmount  = stats.totalPending;
+        },
+        error: err => {
+          console.error('Error cargando progreso general', err);
+          alert('No se pudo cargar el progreso general');
+        }
+      });
   }
-
-
 }

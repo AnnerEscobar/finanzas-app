@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { DebListService } from './debList.service';
+import { CreateDebtDto } from '../../pages/add-debt/add-debt.interface';
 
 @Component({
   selector: 'app-debt-list',
@@ -11,14 +13,31 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 })
 export class DebtListComponent {
 
-    //otras deudas
-    // Datos originales
-  otherDebts = [
-    { name: 'Préstamo estudiantil', total: 1000, paid: 200 },
-    { name: 'Moto Italika',        total: 3000, paid: 900 },
-    { name: 'Línea de crédito',    total: 2500, paid: 1250 },
-  ];
+  debts: CreateDebtDto[] = [];
 
+  constructor(
+    private debtListService: DebListService
+  ){}
+
+   ngOnInit(): void {
+    this.getDebtList();
+  }
+
+  getDebtList(): void {
+    this.debtListService.getDebtList().subscribe({
+      next: (resp) => {
+        this.debts = resp;
+        console.log(this.debts)
+      },
+      error: (err) => {
+        alert('No se obtuvieron las deudas')
+      }
+    })
+  }
+
+
+
+/*
     // Serializa con porcentaje y pendiente calculado
   get otherDebtsList() {
     return this.otherDebts.map(debt => {
@@ -29,6 +48,6 @@ export class DebtListComponent {
         percentage: Math.round((debt.paid / debt.total) * 100),
       };
     });
-  }
+  } */
 
 }
